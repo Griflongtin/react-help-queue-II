@@ -3,7 +3,15 @@ import PropTypes from 'prop-types'
 
 function Ticket(props) {
   return(
-    <div>
+    <div className="color-toggle">
+      <style jsx>{`
+          .color-toggle {
+            color: orange;
+          }
+          .color-toggle:hover {
+            color: green;
+          }
+      `}</style>
       <h3>{props.location} - {props.names}</h3>
       <p><em>{props.issue}</em></p>
       <hr/>
