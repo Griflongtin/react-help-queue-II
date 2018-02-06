@@ -11,9 +11,9 @@ node_modules
 build
 
 npm install webpack@3.4.0 webpack-dev-server@2.5.0 eslint eslint-plugin-react -g
-npm install react@15.5.4 react-dom@15.5.4 prop-types@15.5.10 styled-jsx --save
+npm install react@15.5.4 react-dom@15.5.4 prop-types@15.5.10 styled-jsx react-router-dom@4.0.0 --save
 
-npm install webpack@3.4.0 babel-core@6.24.1 babel-loader@7.0.0 babel-preset-es2015@6.24.1 babel-preset-react@6.24.1 webpack-dev-server@2.5.0 react-hot-loader@3.0.0-beta.7 html-webpack-plugin@2.29.0 --save-dev
+npm install webpack@3.4.0 babel-core@6.24.1 babel-loader@7.0.0 babel-preset-es2015@6.24.1 babel-preset-react@6.24.1 webpack-dev-server@2.5.0 react-hot-loader@3.0.0-beta.7 html-webpack-plugin@2.29.0 eslint-loader --save-dev
 
 eslint --init
   ? Answer questions about your style
@@ -165,32 +165,42 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App";
 import { AppContainer } from 'react-hot-loader';
+import { HashRouter } from 'react-router-dom';
 
 const render = (Component) => {
   ReactDOM.render(
     <AppContainer>
-      <Component/>
+      <HashRouter>
+        <Component/>
+      </HashRouter>
     </AppContainer>,
     document.getElementById('react-app-root')
   );
 };
 
 render(App);
-
+/*eslint-disable */
 if (module.hot) {
   module.hot.accept('./components/App', () => {
     render(App)
   });
 }
+/*eslint-enable */
+
 
 ###App.jsx###
 import React from "react";
 import ReactDOM from "react-dom";
+import { Switch, Route } from 'react-router-dom';
 
 function App() {
   return (
     <div>
       google
+      <Switch>
+        <Route exact path='/' component={ .... } />
+      </Switch>
+
     </div>
   );
 }
@@ -198,7 +208,8 @@ function App() {
 export default App;
 
 
-
+#### For Routing ####
+import { Link } from 'react-router-dom';
 
 
 ###RUN###
