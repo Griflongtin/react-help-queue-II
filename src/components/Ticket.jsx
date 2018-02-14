@@ -1,28 +1,22 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-function Ticket(props) {
-  return(
-    <div className="color-toggle">
-      <style jsx>{`
-          .color-toggle {
-            color: orange;
-          }
-          .color-toggle:hover {
-            color: green;
-          }
-      `}</style>
+function Ticket(props){
+  return (
+    <div>
       <h3>{props.location} - {props.names}</h3>
+      <h4>{props.formattedWaitTime}</h4>
       <p><em>{props.issue}</em></p>
       <hr/>
     </div>
-  )
+  );
 }
 
-Ticket.propType = {
+Ticket.propTypes = {
   names: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,
-  issue: PropTypes.string
-}
+  issue: PropTypes.string,
+  formattedWaitTime: PropTypes.string.isRequired,
+};
 
-export default Ticket
+export default Ticket;
