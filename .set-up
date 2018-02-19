@@ -1,7 +1,7 @@
 git init
 mkdir src
 mkdir src/components
-touch .gitignore template.ejs  webpack.config.js src/index.jsx src/components/App.jsx
+touch .gitignore template.ejs .babelrc webpack.config.js ticket-list-reducer.test.js src/index.jsx src/components/App.jsx
 npm init
 apm i react@0.16.2
 
@@ -10,10 +10,31 @@ apm i react@0.16.2
 node_modules
 build
 
-npm install webpack webpack-dev-server eslint eslint-plugin-react -g
+npm install webpack webpack-dev-server eslint eslint-plugin-react npm install jest@20.0.4 -g
 npm install react react-dom prop-types styled-jsx react-router-dom moment@2.18.1 --save
 
-npm install webpack babel-core babel-loader babel-preset-es2015 babel-preset-react webpack-dev-server react-hot-loader html-webpack-plugin eslint-loader --save-dev
+npm install webpack babel-core babel-loader babel-preset-es2015 babel-preset-react webpack-dev-server react-hot-loader html-webpack-plugin eslint-loader npm install jest@20.0.4 npm install babel-jest@20.0.3 --save-dev
+
+.babelrc
+{
+  "env": {
+    "development": {
+        "plugins": ["transform-es2015-modules-commonjs"]
+    },
+    "test": {
+        "plugins": ["transform-es2015-modules-commonjs"]
+    }
+  }
+}
+
+ticket-list-reducer.test.js
+describe('ticketListReducer', () => {
+
+  test('Temporary dummy test: two plus two is four', () => {
+    expect(2 + 2).toBe(4);
+  });
+
+});
 
 eslint --init
   ? Answer questions about your style
@@ -156,7 +177,7 @@ module.exports = {
 "scripts": {
   "lint": "eslint src/** src/**/**; exit 0",
   "lint-fix": "eslint src/** src/**/** --fix; exit 0",
-  "test": "echo \"Error: no test specified\" && exit 1",
+  "test": "jest; exit 0S",
   "start":  "webpack-dev-server"
 },
 
